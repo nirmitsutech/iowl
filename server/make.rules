@@ -1,0 +1,32 @@
+##############################################################################
+#             
+#
+#
+#
+#
+#
+#############################################################################
+ifeq ($(OS),windows)
+export PREFIX  := /usr/i586-mingw32msvc
+export CFLAGS := -DHAVE_CONFIG_H -DWIN32 -DMINGW32 -Wall -I$(PREFIX)/include -I$(TOPBUILDDIR)/include -I$(PREFIX)/include/libxml2
+export CXXFLAGS := -DHAVE_CONFIG_H -DWIN32 -dMINGW32 -Wall -I$(PREFIX)/include -I$(TOPBUILDDIR)/include -I$(PREFIX)/include/libxml2
+export LDFLAGS  := 
+export LIBS     := -L$(PREFIX)/lib -lxml2 -lws2_32
+export CROSS := i586-mingw32msvc-
+export MAKEFILE := Makefile-w32
+else
+export PREFIX := /usr
+export CFLAGS := -DHAVE_CONFIG_H -D_GNU_SOURCE -Wall -I$(PREFIX)/include -I$(TOPBUILDDIR)/include -I$(PREFIX)/include/libxml2
+export CXXFLAGS :=-DHAVE_CONFIG_H -D_GNU_SOURCE -Wall -I$(PREFIX)/include -I$(TOPBUILDDIR)/include -I$(PREFIX)/include/libxml2
+export LDFLAGS := 
+export LIBS := -L$(PREFIX)/lib -lxml2
+export CROSS :=
+endif # OS Note: please flags according platforms
+
+
+
+export CC := $(CROSS)gcc
+export CXX := $(CROSS)g++
+export AR  := $(CROSS)ar
+export RANLIB  := $(CROSS)ranlib
+export LD      := $(CROSS)ld

@@ -1,0 +1,1 @@
+cc -I. -U../include -c ../src/acq_proto.c -o ../src/acq_proto.o

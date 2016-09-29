@@ -1,0 +1,5 @@
+thread.cpp: In member function ‘void MyFrame::OnStartThreads(wxCommandEvent&)’:
+thread.cpp:431:52: error: ‘wxGetNumberFromUser’ was not declared in this scope
+        _T("wxThread sample"), s_num, 1, 10000, this);
+                                                    ^
+make: *** [thread.o] Error 1

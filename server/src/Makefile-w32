@@ -1,0 +1,18 @@
+SRCS :=acq_handle.c acq_log.c acq_daemon.c acq_timer.c acq_hw.c acq_manage.c acq_device.c acq_config.c acqd.c
+OBJS=$(SRCS:.c=.o)
+CFLAGS += -DDAEMONIZE -I.
+TARGET := acqd.exe
+
+all: $(TARGET) 
+
+$(TARGET):$(OBJS)
+	$(CC) -o $@ $(OBJS) $(LDFLAGS)  $(LIBS)
+
+%.o:%.c
+	$(CC) $(CFLAGS) -c $^ -o $@
+clean:
+	rm -f $(TARGET) $(OBJS)
+
+test:station.o
+	$(CC) -o $@ $^ -lxml2
+	
